@@ -1,0 +1,23 @@
+1 D_Log Birdie Cursor;1 Create Birdie VarBox;2 Translate Birdie 4 4;
+
+0 D_Log ffmpeg;
+0 Create Bird Cursor;
+0 Create Foo VarBox;
+1 Translate Bird 5 0;
+1 Translate Bird -5 0;
+1 Translate Bird 5 0;
+1 Translate Bird -5 0;
+1 Translate Bird 5 0;
+1 Translate Bird -5 0;
+1 Translate Bird 5 0;
+1 Translate Bird -5 0;
+1 Translate Bird 5 0;
+1 Translate Bird -5 0;
+1 Translate Bird 5 0;
+1 Translate Bird -5 0;
+1 Translate Bird 5 0;
+1 Translate Bird -5 0;
+1 Translate Bird 5 0;
+1 Translate Bird -5 0;
+1 Translate Bird 5 0;
+1 Translate Bird -5 0;
