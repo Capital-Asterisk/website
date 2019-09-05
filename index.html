@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Vendalenger</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.css">
+
+    <style>
+      body {
+        font-family: Ubuntu;
+        /*padding-left: 8%;
+        padding-right: 8%;*/
+      }
+      
+    </style>
+    
+    <script>
+    
+      var loadedPage = "";
+    
+      var clearPage = function() {
+        //$("body").children(":gt(1)").remove();
+      }
+      
+      var loadPage = function(url) {
+        if (loadedPage == url)
+          return;
+        loadedPage = url;
+        clearPage();
+        //$.get(url, function(data){
+        //  $("body").append(data);
+        //});
+      }
+    
+    </script>
+  </head>
+
+  <script>
+  
+    /*$("#nav_home").on("click", function(event) {
+      loadPage("home.html")
+    });
+    
+    $("#nav_works").on("click", function(event) {
+      loadPage("works.html")
+    });
+    
+    $("#nav_contc").on("click", function(event) {
+      loadPage("contc.html")
+    });*/
+    
+    var tohref = window.location.href.split("#")[1];
+    
+    if (tohref)
+      loadPage(tohref + ".html");
+    else
+      loadPage("home.html");
+  
+  </script>
+  
+  <body>
+  
+    <section id="yes" class="container">
+    
+      <h1>Vendalenger site</h1>
+
+      <h3>Today</h3>
+      <p>There has always been a block of sample text here.</p>
+      <blockquote>
+      <p><em>I woke up in a box, there was nothing all around. Only lots of sand, and there was a road, it was made of lighter sand. I think I can see something far away, but there wasn't something far away. I am going to follow this road. Let's go for a walk.</em></p>
+      </blockquote>
+    </section>
+  </body>
+</html>
