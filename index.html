@@ -12,20 +12,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.css">
 
     <style>
-      body {
+      body, html {
         font-family: Ubuntu;
+        margin: 0;
+        height: 100%;
+        display: flex;
+        /*height: 100%;*/
         /*padding-left: 8%;
         padding-right: 8%;*/
+        
       }
+      ul {
+
+      }
+
       
     </style>
     
     <script>
     
+      var content = null;
+    
       var loadedPage = "";
     
       var clearPage = function() {
-        //$("body").children(":gt(1)").remove();
+        var children = content.children;
+        for (var i = children.length; i > 0; i --) {
+          children[0].remove();
+        }
       }
       
       var loadPage = function(url) {
@@ -36,6 +50,7 @@
         //$.get(url, function(data){
         //  $("body").append(data);
         //});
+        content.append("not yet implemented");
       }
     
     </script>
@@ -55,26 +70,52 @@
       loadPage("contc.html")
     });*/
     
-    var tohref = window.location.href.split("#")[1];
-    
-    if (tohref)
-      loadPage(tohref + ".html");
-    else
-      loadPage("home.html");
+
   
   </script>
   
-  <body>
+  <body style="">
   
-    <section id="yes" class="container">
+    <div style="display: flex; flex-flow: row; flex-grow: 1;">
     
-      <h1>Vendalenger site</h1>
+      <div class="" style="background-color:#0e0e0e; width: 256px; min-width:256px">
+      <object data="img/vendalenger_nav.svg" type="image/svg+xml" style="margin:6px">
+      </object>
+        <ul>
+          <li><a onclick="loadPage('')" href="">Home</a></li>
+          <li><a onclick="loadPage('home')">Page A</a></li>
+          <li><a onclick="loadPage('home')">Page B</a></li>
+          <li><a onclick="loadPage('home')">Page C</a></li>
 
-      <h3>Today</h3>
-      <p>There has always been a block of sample text here.</p>
-      <blockquote>
-      <p><em>I woke up in a box, there was nothing all around. Only lots of sand, and there was a road, it was made of lighter sand. I think I can see something far away, but there wasn't something far away. I am going to follow this road. Let's go for a walk.</em></p>
-      </blockquote>
-    </section>
+
+        </ul>
+      </div>
+      <div class="container" id="mainContent" style="flex-grow : 1; min-height:100%">
+          <h1>You found Neal's website</h1>
+          
+          <p>A fresh new website is under construction</p>
+
+          <h3>Test</h3>
+          <p>I won coriolis three more motorcycle</p>
+          <blockquote>
+          <p><em>I woke up in a box, there was nothing all around. Only lots of sand, and there was a road, it was made of lighter sand. I think I can see something far away, but there wasn't something far away. I am going to follow this road. Let's go for a walk.</em></p>
+          </blockquote>
+          
+      </div>
+
+    </div>
+  
+    <script>
+      content = document.getElementById("mainContent");
+        
+      var tohref = window.location.href.split("#")[1];
+    
+      if (tohref) {
+        loadPage(tohref + ".html");
+      } else {
+        //loadPage("home.html");
+      }
+    </script>
+    
   </body>
 </html>
