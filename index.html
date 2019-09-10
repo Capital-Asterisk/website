@@ -22,10 +22,30 @@
         padding-right: 8%;*/
         
       }
-      ul {
 
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        background-color: #262626;
       }
 
+      li a {
+        display: block;
+        color: #FFF;
+        padding: 8px 16px;
+        text-decoration: none;
+      }
+
+      li a:hover {
+        background-color: #555;
+        color: white;
+      }
+
+      .selected {
+        background-color: #1e1e1e;
+        box-shadow: inset 0px 1px 6px 0px rgba(0,0,0,0.75);
+      }
       
     </style>
     
@@ -82,7 +102,12 @@
       <object data="img/vendalenger_nav.svg" type="image/svg+xml" style="margin:6px">
       </object>
         <ul>
-          <li><a onclick="loadPage('')" href="">Home</a></li>
+          <li>
+            <svg width="24" height="24" style="position:relative;top:8px;float:right;">
+              <polygon points="24,0 24,24 5,12" style="fill:white;fill-rule:evenodd;stroke-width:0" />
+            </svg>
+            <a onclick="loadPage('')" href="" class="selected">Home</a>
+          </li>
           <li><a onclick="loadPage('home')">Page A</a></li>
           <li><a onclick="loadPage('home')">Page B</a></li>
           <li><a onclick="loadPage('home')">Page C</a></li>
@@ -101,7 +126,10 @@
           <p><em>I woke up in a box, there was nothing all around. Only lots of sand, and there was a road, it was made of lighter sand. I think I can see something far away, but there wasn't something far away. I am going to follow this road. Let's go for a walk.</em></p>
           </blockquote>
           
+
+          
       </div>
+
 
     </div>
   
