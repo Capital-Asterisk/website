@@ -29,29 +29,67 @@
         padding: 0;
         background-color: #262626;
       }
+      
+      li {
+        margin: 0px;
+        cursor: pointer;
+      }
 
       li a {
         display: block;
         color: #FFF;
         padding: 8px 16px;
+        margin: 0px;
         text-decoration: none;
       }
 
-      li a:hover {
+      li a:hover:not(.selected) {
         background-color: #555;
-        color: white;
+      }
+      
+      li a:hover {
+        color: #FFF;
       }
 
       .selected {
         background-color: #1e1e1e;
         box-shadow: inset 0px 1px 6px 0px rgba(0,0,0,0.75);
+        cursor: default;
+      }
+      
+      .vertnav {
+        background-color:#0e0e0e;
+        width: 192px;
+        min-width: 192px;
       }
       
     </style>
     
     <script>
     
+      // Paralell with nav bar
+      var pages = [
+        {
+          id: "home",
+          niceName: "Home"
+        },
+        {
+          id: "a",
+          niceName: "Page A"
+        },
+        {
+          id: "b",
+          niceName: "Page B"
+        },
+        {
+          id: "c",
+          niceName: "Page C"
+        },
+      ]
+    
       var content = null;
+      var arrow = null;
+      var navButts = null;
     
       var loadedPage = "";
     
@@ -62,16 +100,75 @@
         }
       }
       
-      var loadPage = function(url) {
-        if (loadedPage == url)
-          return;
-        loadedPage = url;
+      var loadPage = function(index, addh) {
+        selectButton(index);
+        //if (loadedPage == url)
+        //  return;
+        //loadedPage = url;
         clearPage();
-        //$.get(url, function(data){
-        //  $("body").append(data);
-        //});
-        content.append("not yet implemented");
+        
+        if (addh) {
+          history.pushState({ }, pages[index].niceName, "#" + pages[index].id);
+        }
+        
+        fetch(pages[index].id + '.html')
+	      .then((response) => response.text())
+        .then((html) => {
+            content.innerHTML = html;
+        })
+        .catch((error) => {
+            console.warn(error);
+        });
       }
+    
+      var selectButton = function(index) {
+        
+        var listt = navButts.children[index];
+        
+        // Add the white arrow thing
+        var button = listt.children[listt.children.length - 1];
+        listt.insertBefore(arrow, listt.children[0]);
+        
+        // Remove all the selected buttons
+        //var selected = document.getElementsByClassName("selected")
+        //for (var i = 0; i < selected; i ++) {
+        //  selected[i].
+        //}
+        // There should only be one selected button so it's okay
+        var frog = document.getElementsByClassName("selected");
+        if (frog.length > 0) {
+          frog[0].classList.remove("selected")
+        }
+        
+        button.classList.add("selected");
+        
+        
+      }
+      
+      var navPush = function(index) {
+        loadPage(index, true);
+        //console.log(button);
+      }
+      
+      var loadUrl = function() {
+        var tohref = window.location.href.split("#")[1];
+      
+        if (tohref) {
+          for (var i = 0; i < pages.length; i ++) {
+            if (pages[i].id == tohref) {
+              loadPage(i);
+              break;
+            }
+          }
+          
+        } else {
+          loadPage(0); 
+        }
+      }
+    
+      window.onpopstate = function(event) {
+        loadUrl();
+      };
     
     </script>
   </head>
@@ -98,33 +195,20 @@
   
     <div style="display: flex; flex-flow: row; flex-grow: 1;">
     
-      <div class="" style="background-color:#0e0e0e; width: 256px; min-width:256px">
-      <object data="img/vendalenger_nav.svg" type="image/svg+xml" style="margin:6px">
+      <div class="vertnav">
+      <object data="img/vendalenger_nav.svg" type="image/svg+xml" style="margin:3px">
       </object>
-        <ul>
-          <li>
-            <svg width="24" height="24" style="position:relative;top:8px;float:right;">
-              <polygon points="24,0 24,24 5,12" style="fill:white;fill-rule:evenodd;stroke-width:0" />
-            </svg>
-            <a onclick="loadPage('')" href="" class="selected">Home</a>
-          </li>
-          <li><a onclick="loadPage('home')">Page A</a></li>
-          <li><a onclick="loadPage('home')">Page B</a></li>
-          <li><a onclick="loadPage('home')">Page C</a></li>
+        <ul id="navButts">
+          <li><a onclick="navPush(0)">Page A</a></li>
+          <li><a onclick="navPush(1)">Home</a></li>
+          <li><a onclick="navPush(2)">Page B</a></li>
+          <li><a onclick="navPush(3)">Page C</a></li>
 
 
         </ul>
       </div>
       <div class="container" id="mainContent" style="flex-grow : 1; min-height:100%">
-          <h1>You found Neal's website</h1>
-          
-          <p>A fresh new website is under construction</p>
 
-          <h3>Test</h3>
-          <p>I won coriolis three more motorcycle</p>
-          <blockquote>
-          <p><em>I woke up in a box, there was nothing all around. Only lots of sand, and there was a road, it was made of lighter sand. I think I can see something far away, but there wasn't something far away. I am going to follow this road. Let's go for a walk.</em></p>
-          </blockquote>
           
 
           
@@ -133,16 +217,16 @@
 
     </div>
   
+    <svg id="arrowThing" width="24" height="24" style="display:hidden;position:relative;top:8px;float:right;">
+      <polygon points="24,0 24,24 5,12" style="fill:white;fill-rule:evenodd;stroke-width:0" />
+    </svg>
+  
     <script>
       content = document.getElementById("mainContent");
+      arrow = document.getElementById("arrowThing");
+      navButts = document.getElementById("navButts");
         
-      var tohref = window.location.href.split("#")[1];
-    
-      if (tohref) {
-        loadPage(tohref + ".html");
-      } else {
-        //loadPage("home.html");
-      }
+      loadUrl();
     </script>
     
   </body>
