@@ -112,7 +112,23 @@
         }
         
         fetch(pages[index].id + '.html')
-	      .then((response) => response.text())
+	      .then((response) => {
+	        if (response.ok) {
+	          return response.text();
+	        } else {
+	          console.error("i just don't know what went wrong");
+	          console.error(response);
+	          switch(response.status) {
+	          case 404:
+	            return "<h1>404 Error!</h1><p>Page doesn't want to exist.</p>"
+	            break
+	          default:
+	            return "<h1>Strange Error!</h1><p>see console output</p>";
+	          }
+	          
+	          
+	        }
+	      })
         .then((html) => {
             content.innerHTML = html;
         })
@@ -196,11 +212,15 @@
     <div style="display: flex; flex-flow: row; flex-grow: 1;">
     
       <div class="vertnav">
-      <object data="img/vendalenger_nav.svg" type="image/svg+xml" style="margin:3px">
+      <object data="img/vendalenger_nav.svg" type="image/svg+xml" style="margin:3px;
+border-top:0px;
+border-right:0px;
+border-bottom:0px solid #67ff00;
+border-left:0px;">
       </object>
         <ul id="navButts">
-          <li><a onclick="navPush(0)">Page A</a></li>
-          <li><a onclick="navPush(1)">Home</a></li>
+          <li><a onclick="navPush(0)">Home</a></li>
+          <li><a onclick="navPush(1)">Page A</a></li>
           <li><a onclick="navPush(2)">Page B</a></li>
           <li><a onclick="navPush(3)">Page C</a></li>
 
