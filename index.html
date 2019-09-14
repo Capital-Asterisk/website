@@ -33,6 +33,10 @@
       li {
         margin: 0px;
         cursor: pointer;
+        border-bottom: 1px solid #1e1e1e;
+        border-left: 0px;
+        border-right: 0px;
+        border-top: 0px;
       }
 
       li a {
@@ -61,6 +65,13 @@
         background-color:#0e0e0e;
         width: 192px;
         min-width: 192px;
+        margin:0px;
+      }
+      
+      #mainContent {
+        flex-grow : 1;
+        min-height:100%;
+        padding-top: 12px;
       }
       
     </style>
@@ -74,15 +85,23 @@
           niceName: "Home"
         },
         {
-          id: "a",
+          id: "active",
           niceName: "Page A"
         },
         {
-          id: "b",
+          id: "webapps",
+          niceName: "Page A"
+        },
+        {
+          id: "gamedev",
           niceName: "Page B"
         },
         {
-          id: "c",
+          id: "about",
+          niceName: "Page C"
+        },
+        {
+          id: "contact",
           niceName: "Page C"
         },
       ]
@@ -91,7 +110,8 @@
       var arrow = null;
       var navButts = null;
     
-      var loadedPage = "";
+      var loadedPage
+   = "";
     
       var clearPage = function() {
         var children = content.children;
@@ -212,23 +232,20 @@
     <div style="display: flex; flex-flow: row; flex-grow: 1;">
     
       <div class="vertnav">
-      <object data="img/vendalenger_nav.svg" type="image/svg+xml" style="margin:3px;
-border-top:0px;
-border-right:0px;
-border-bottom:0px solid #67ff00;
-border-left:0px;">
+      <object data="img/vendalenger_nav.svg" type="image/svg+xml" style="margin:2px; margin-top: 9px;">
       </object>
         <ul id="navButts">
           <li><a onclick="navPush(0)">Home</a></li>
-          <li><a onclick="navPush(1)">Page A</a></li>
-          <li><a onclick="navPush(2)">Page B</a></li>
-          <li><a onclick="navPush(3)">Page C</a></li>
+          <li><a onclick="navPush(1)">Active Projects</a></li>
+          <li><a onclick="navPush(2)">Web Applications</a></li>
+          <li><a onclick="navPush(3)">Game Development</a></li>
+          <li><a onclick="navPush(4)">About</a></li>
+          <li><a onclick="navPush(5)">Contact</a></li>
 
 
         </ul>
       </div>
-      <div class="container" id="mainContent" style="flex-grow : 1; min-height:100%">
-
+      <div class="container" id="mainContent">
           
 
           
@@ -237,7 +254,7 @@ border-left:0px;">
 
     </div>
   
-    <svg id="arrowThing" width="24" height="24" style="display:hidden;position:relative;top:8px;float:right;">
+    <svg id="arrowThing" width="24" height="24" style="display:hidden;position:relative;top:7px;float:right;">
       <polygon points="24,0 24,24 5,12" style="fill:white;fill-rule:evenodd;stroke-width:0" />
     </svg>
   
