@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Latest compiled and minified CSS -->
+	<!--link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
+	<link rel="stylesheet" href="res/bootstrap.min.css">
+
+
+	<!-- jQuery library -->
+	<!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script-->
+	<script src="res/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<!--script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script-->
+	<script src="res/bootstrap.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style/all2.css" type="text/css" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+	<title>Woof Shredder!</title>
+</head>
+<body style="background-color: #f0f0f0; background-image: url('http://vendalenger.x10host.com/img/tile.png'); background-repeat: repeat; color: #262626;">
+	
+	<canvas id="neatcanvas" width="48px" height="48px" style="margin: 0px;" unselectable="on">
+		get a better browser, dinosaur m8
+	</canvas>
+
+	<div class="container floata col-sm-12">
+		<p>Raw Code, easier way to drag blocks on to the screen will work hopefully.</p>
+		<!--textarea class="form-control" id="code" rows="6">
+0 D_Log ffmpeg is cool. Spider! First line is not read somehow;
+0 Create Cursor Bird value:0 textH:center textV:bottom;
+0 Create Box Foo x:-2 y:0;
+0 Create BarArray Bar value:shuffle y:2;
+2 If (Bird == Foo) {
+	0 D_Log "see? nothing happened";
+}
+2 If (Bird != Foo) {
+	0 D_Log "see? something happened!";
+}
+1 Translate Bird 1 0;
+0.2 Translate Bird Bird.x 0;
+0.2 Translate Bird Bird.x 0;
+0.2 Translate Bird 5 0;
+0.2 Translate Bird -5 0;
+0.2 Translate Bird 5 0;
+0.2 Translate Bird -5 0;
+0.2 Translate Bird 5 0;
+0.2 Translate Bird -5 0;
+0.2 Translate Bird 5 0;
+0.2 Translate Bird -7 -3;
+0.7 MoveTo Bird Foo;
+0.6 CursorGet + Bird;
+0.6 CursorGet + Bird;
+0.6 CursorPut = Bird;
+0.3 MoveTo Bird Bar 0;
+0.1 CursorPut = Bird;
+0.3 MoveTo Bird Bar Bird.index+1;
+0.1 CursorPut = Bird;
+0.3 MoveTo Bird Bar Bird.index+1;
+0.1 CursorPut = Bird;
+0.3 MoveTo Bird Bar Bird.index+1;
+0.1 CursorPut = Bird;
+0.3 MoveTo Bird Bar Bird.index+1;
+0.1 CursorPut = Bird;
+0.3 MoveTo Bird Bar Bird.index+1;
+0.1 CursorPut = Bird;
+0.3 MoveTo Bird Bar Bird.index+1;
+0.1 CursorPut = Bird;
+0.3 MoveTo Bird Bar Bird.index+1;
+0.1 CursorPut = Bird;
+0.3 MoveTo Bird Bar Bird.index+1;
+0.1 CursorPut = Bird;
+0.3 MoveTo Bird Bar Bird.index+1;
+0.1 CursorPut = Bird;
+0.3 MoveTo Bird Bar 10;
+0.1 CursorPut = Bird;
+0.3 MoveTo Bird Bar 11;
+0.1 CursorPut = Bird;
+2 Translate Bird 5 0;
+0.0 While (2 == 2) {
+	0.5 Translate Bird 1 0;
+	0.5 Translate Bird -1 0;
+}
+</textarea-->
+<textarea class="form-control" id="code" rows="6">
+0 D_Log The woof shredder test
+Segments are separated by semicolons, whitespace between are ignored.
+Each segment consists of:
+[Delay] [Function name] [parameters...] and don't forget the semicolon.
+Parameters can be strings, numbers, objects, or expressions:
+"string" 5 object.value+5 Cursor
+Indents don't divide lines, this is still part of the D_Log function.
+This example is the Bubble Sort
+See shredwoof.js for more information.;
+
+0 D_Log This function creates a cursor. Cursors do all the number moving;
+0 Create Cursor Cur0 value:0 textH:center textV:bottom;
+
+0 D_Log This one creates the array named Bar
+change value to random, max, min, ramp, ramp_int, or shuffle;
+0 Create BarArray Bar value:shuffle x:-6 y:2 width:12 size:32;
+
+0 D_Log Move Cursor to position 0 of Bar
+0.3 MoveTo Cur0 Bar 0;
+
+0 D_Log Start doing the actual sorting.
+
+A cursor can select objects and put it into slots.
+In this while loop:
+- Cur0 selects the index it's on as 0.
+- Moves to the next index
+- Cur0 selects the index it's on as 1.
+- If 0 is larger then 1, then swap them. (not really);
+0.0 While (Cur0.index < Bar.value.length - 1 && Cur0.value != Bar.value.length - 1) {
+	0.0 CursorSelect Cur0 0;
+	0.05 MoveTo Cur0 Bar Cur0.index+1;
+	0.0 CursorSelect Cur0 1;
+	0.0 If (Bar.value[Cur0.index] < Bar.value[Cur0.index - 1]) {
+		0.1 CursorSwap Cur0 0 1;
+	}
+	0.0 If (Cur0.index == Bar.value.length - 1 - Cur0.value) {
+		0.1 CursorOp Cur0 + 1;
+		0.1 MoveTo Cur0 Bar 0;
+	}
+}
+0.1 CursorOp Cur0 = "We did it!";
+</textarea>
+		<button type="button" id="getstarted" class="btn btn-primary">Run</button>
+		<p>what have you done</p>
+	</div>
+	
+	<script src="shredwoof.js"></script>
+	
+</body>
+</html>
