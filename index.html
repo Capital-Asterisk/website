@@ -15,12 +15,12 @@
       body, html {
         font-family: Ubuntu, Cantarell, Arial;
         margin: 0;
-        display: flex;
         color: #555555;
         /*height: 100%;*/
         /*padding-left: 8%;
         padding-right: 8%;*/
-        min-height:100%
+        height:100%;
+        //background-color: blue;
       }
       
       .button {
@@ -129,21 +129,26 @@
 
       #bigdiv {
         display: flex;
-        flex-flow: row;
+        flex-wrap: wrap;
+        min-height: 100vh;
+       
       }
 
       #leftnav {
         background-color:#0e0e0e;
-        width: 192px;
+        flex: 1 0 200px;
         min-width: 192px;
         margin:0px;
       }
       
       #mainContent {
         z-index: 1;
-        flex-grow : 3;
+        flex: 1 75%;
+        flex-grow: 12;
+        min-height: 100vh;
         padding: 0px;
         box-shadow: -2px 0px 2px 0px rgba(0,0,0,0.5);
+        
       }
       
       
@@ -164,10 +169,10 @@
           id: "home",
           niceName: "Home"
         },
-        {
-          id: "active",
-          niceName: "Active Projects"
-        },
+        //{
+        //  id: "active",
+        //  niceName: "Active Projects"
+        //},
         {
           id: "software",
           niceName: "Software"
@@ -256,12 +261,8 @@
         
       }
       
-      var navPush = function(index) {
-        loadPage(index, true);
-        //console.log(button);
-      }
-      
       var loadUrl = function() {
+        console.log("loa");
         var tohref = window.location.href.split("#")[1];
       
         if (tohref) {
@@ -310,11 +311,11 @@
       <object data="img/vendalenger_nav.svg" type="image/svg+xml" style="z-index:20; margin:2px; margin-top: 9px; margin-bottom: 7px;">
       </object>
         <ul id="navButts">
-          <li><a onclick="navPush(0)">Home</a></li>
-          <li><a onclick="navPush(1)">Active Projects</a></li>
-          <li><a onclick="navPush(2)">Software</a></li>
-          <li><a onclick="navPush(3)">About</a></li>
-          <li><a onclick="navPush(4)">Contact</a></li>
+          <li><a href="#home">Home</a></li>
+          <!--li><a onclick="navPush(1)">Active Projects</a></li-->
+          <li><a href="#software">Software</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
 
 
         </ul>
